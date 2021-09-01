@@ -51,11 +51,9 @@ If you haven't created your MongoDB Cluster follow part 1 - 4:
     spring.data.mongodb.uri=${MONGODB_URI}
     ````
 7. Add the environment variable to IntelliJ Idea by editing the Run/Debug Configurations:
-   <img align="center" src="img/run-debug-configurations.png">
+   <img align="center" src="img/p9.JPG">
    
-   
-   <img align="center" src="img/adding-environment-variable.png">
-7. Add the Spring Boot starter data MongoDB dependency to your *build.gradle*:
+8. Add the Spring Boot starter data MongoDB dependency to your *build.gradle*:
     ```groovy
        dependencies {
             implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -63,161 +61,63 @@ If you haven't created your MongoDB Cluster follow part 1 - 4:
             testImplementation 'org.springframework.boot:spring-boot-starter-test'
         }
     ```
-8. Run your project and verify that the connection is successful.
+9. Run your project and verify that the connection is successful.
+
+   <img align="center" src="img/p8.JPG">
 
 ### Part 3: Implementing the MongoDB Service
 
 1. Create a new package called *repository*.
 2. Create a new class called *UserDocument*:
 
-   **Java:**
-    ```java
-      import org.springframework.data.annotation.Id;
-      import org.springframework.data.mongodb.core.index.Indexed;
-      import org.springframework.data.mongodb.core.mapping.Document;
-      
-      import java.util.Date;
-      
-      @Document
-      public class UserDocument
-      {
-         @Id
-         String id;
-      
-         String name;
-      
-         @Indexed( unique = true )
-         String email;
-      
-         String lastName;
-      
-         Date createdAt;
-      
-         public UserDocument()
-         {
-         }
-      }
+   <img align="center" src="img/p12.JPG">
    
-     ```
-   **Kotlin:**
-     ```kotlin
-         @Document
-         class User(
-            @Id var id: String?,
-            var name: String,
-            var lastName: String,
-            @Indexed(unique = true)
-            var email: String,
-            var createdAt: Date
-         )
-     ```
 3. Create a new interface called *UserRepository* inside the repository package:
 
-   **Java:**
-    ```java
-      import org.springframework.data.mongodb.repository.MongoRepository;
-      
-      public interface UserRepository extends MongoRepository<UserDocument, String>
-      {}
-     ```
-   **Kotlin:**
-     ```kotlin
-         interface UserRepository: MongoRepository<UserDocument, String>
-     ```
+  <img align="center" src="img/p10.JPG">
 
 4. Create a new *UserService* implementation called *UserServiceMongoDB* and inject inside the *UserRepository*:
-
-   **Java:**
-      ```java
-         import java.util.List;
-         
-         public class UserServiceMongoDB
-         implements UserService
-         {
-         
-             private final UserRepository userRepository;
-         
-             public UserServiceMongoDB(@Autowired UserRepository userRepository )
-             {
-                 this.userRepository = userRepository;
-             }
-         
-             @Override
-             public User create( User user )
-             {
-                 return null;
-             }
-         
-             @Override
-             public User findById( String id )
-             {
-                 return null;
-             }
-         
-             @Override
-             public List<User> all()
-             {
-                 return null;
-             }
-         
-             @Override
-             public boolean deleteById( String id )
-             {
-                 return false;
-             }
-         
-             @Override
-             public User update( UserDto userDto, String id )
-             {
-                 return null;
-             }
-         }
-    ```
-
-   **Kotlin:**
-     ```kotlin
-         class UserServiceMongoDB(@Autowired private val userRepository: UserRepository) : UserService {
-         override fun create(user: User): User? {
-         return null
-         }
-         
-             override fun findById(id: String): User? {
-                 return null
-             }
-         
-             override fun all(): List<User>? {
-                 return null
-             }
-         
-             override fun deleteById(id: String): Boolean {
-                 return false
-             }
-         
-             override fun update(userDto: UserDto, id: String): User? {
-                 return null
-             }
-         }         
-     ```
 5. Implement the methods of the *UserServiceMongoDB* using the *UserRepository*.
 6. Remove the *@Service* annotation from the *UserServiceHashMap* and add it to the *UserServiceMongoDB*.
+
+<img align="center" src="img/p11.JPG">
+
 7. Test your API and verify that your data is stored in your cluster.
+**create**
+
+<img align="center" src="img/p1.JPG">
+
+**all**
+
+<img align="center" src="img/p2.JPG">
+
+**findById**
+
+<img align="center" src="img/p3.JPG">
+
+**update**
+
+<img align="center" src="img/p4.JPG">
+
+**delete**
+
+<img align="center" src="img/p5.JPG">
 
 ### Challenge Yourself: Implement complex queries using the Spring Data Query Methods
 1. Modify the *UserService* interface adding the following methods:
 
-   **Java:**
-    ```java
-        List<User> findUsersWithNameOrLastNameLike(String queryText);
-        
-        List<User> findUsersCreatedAfter(Date startDate);
-      {}
-     ```
-   **Kotlin:**
-     ```kotlin
-        fun findUsersWithNameOrLastNameLike(queryText: String): List<User>
-        
-        fun findUsersCreatedAfter(startDate: Date): List<User>
-     ```
+   
+**findUsersWithNameOrLastNameLike**
+
+<img align="center" src="img/p6.JPG">
+<img align="center" src="img/p13.JPG">
+
+**findUserCreatedAfter**
+
+<img align="center" src="img/p7.JPG">
+<img align="center" src="img/p14.JPG">
+
+
 ***Tip***: take a look at the official documenation and learn how to create custom queries with [Spring Data](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation)
 
     
