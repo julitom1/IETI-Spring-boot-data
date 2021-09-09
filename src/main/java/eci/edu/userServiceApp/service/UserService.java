@@ -1,9 +1,8 @@
-package eci.edu.userServiceApp.service;
+package org.ada.school.service;
 
-import eci.edu.userServiceApp.dto.UserDto;
-import eci.edu.userServiceApp.model.User;
+import org.ada.school.dto.UserDto;
+import org.ada.school.model.User;
 
-import java.util.Date;
 import java.util.List;
 
 public interface UserService
@@ -17,8 +16,4 @@ public interface UserService
     boolean deleteById( String id );
 
     User update( UserDto userDto, String id );
-    
-    List<User> findUsersWithNameOrLastNameLike(String queryText);
-    
-    List<User> findUsersCreatedAfter(Date startDate);
 }

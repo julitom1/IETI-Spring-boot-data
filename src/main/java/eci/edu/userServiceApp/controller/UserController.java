@@ -1,6 +1,8 @@
 package eci.edu.userServiceApp.controller;
 
-
+import org.ada.school.dto.UserDto;
+import org.ada.school.model.User;
+import org.ada.school.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,11 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import eci.edu.userServiceApp.dto.UserDto;
-import eci.edu.userServiceApp.model.User;
-import eci.edu.userServiceApp.service.UserService;
-
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -62,20 +59,5 @@ public class UserController
     {
         return ResponseEntity.ok( userService.deleteById( id ) );
     }
-    @GetMapping( "/queryNameOrLastName/{queryText}")
-    public ResponseEntity<List<User>> findUsersWithNameOrLastNameLike( @PathVariable String queryText )
-    {
-        return ResponseEntity.ok( userService.findUsersWithNameOrLastNameLike(queryText) );
-    }
-    
-    @PostMapping( "/date")
-    public ResponseEntity<List<User>> findUserCreatedAfter( @RequestBody Date startDate )
-    {
 
-        return ResponseEntity.ok( userService.findUsersCreatedAfter(startDate) );
-    }
-
-   
-    
-    
 }

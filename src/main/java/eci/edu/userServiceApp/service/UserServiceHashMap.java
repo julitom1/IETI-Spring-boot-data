@@ -1,15 +1,14 @@
-package eci.edu.userServiceApp.service;
+package org.ada.school.service;
 
-import eci.edu.userServiceApp.dto.UserDto;
-import eci.edu.userServiceApp.model.User;
+import org.ada.school.dto.UserDto;
+import org.ada.school.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-
+@Service
 public class UserServiceHashMap
     implements UserService
 {
@@ -60,18 +59,6 @@ public class UserServiceHashMap
             return null;
         }
     }
-
-	@Override
-	public List<User> findUsersWithNameOrLastNameLike(String queryText) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<User> findUsersCreatedAfter(Date startDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 }

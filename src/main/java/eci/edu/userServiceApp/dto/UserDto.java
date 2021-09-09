@@ -1,4 +1,4 @@
-package eci.edu.userServiceApp.dto;
+package org.ada.school.dto;
 
 public class UserDto
 {

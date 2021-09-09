@@ -1,10 +1,10 @@
-package eci.edu.mongodb;
+package eci.edu.userServiceApp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MongodbApplicationTests {
+class UserServiceAppApplicationTests {
 
 	@Test
 	void contextLoads() {
